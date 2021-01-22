@@ -1,0 +1,44 @@
+﻿@model BlankSpace.ViewModels.AgentVm
+
+@{
+    ViewData["Title"] = "AgentDetails";
+}
+
+
+
+<div class="col-md-4  col-md-offset-4">
+    <h2>Agent Details</h2>
+    <hr />
+    <dl class="dl-horizontal h4">
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DOB)
+        </dt>
+        <dd>
+            @Model.DOB.Date.ToString("dd-MM-yy")
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+    </dl>
+    <div>
+
+        <a asp-action="AgentList">Back to List</a>
+    </div>
+</div>
+

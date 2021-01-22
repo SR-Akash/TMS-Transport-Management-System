@@ -1,0 +1,59 @@
+﻿@model BlankSpace.ViewModels.DriverVm
+
+@{
+    ViewData["Title"] = "UpdateDriver";
+}
+
+<h2 style="text-align:center">Update Driver</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        @if (TempData["msg"] != null)
+        {
+            <div class="alert alert-info text-center" role="alert">
+                <button type="button" class="close" aria-label="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @TempData["msg"]
+            </div>
+        }
+
+        <form asp-controller="Driver" asp-action="UpdateDriver" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="DriverVmId" type="hidden" />
+            <input asp-for="LicenseNumber" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="LicenseNumber" class="control-label"></label>
+                <input asp-for="LicenseNumber" class="form-control" />
+                <span asp-validation-for="LicenseNumber" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="DriverList">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+

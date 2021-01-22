@@ -1,0 +1,63 @@
+﻿@model List<BlankSpace.ViewModels.BusVm>
+
+<p class="h2" style="text-align:center;">Bus List<br /><div style="border-bottom:1px solid #686868"></div> </p>
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info text-center" role="alert">
+        <button type="button" class="close" aria-label="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["msg"]
+    </div>
+}
+@*<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input type="text" class="form-control" name="BusName" />
+        </div>
+        <div class="col-2">
+            <input type="submit" value="Search" class="btn btn-primary" />
+        </div>
+    </div>
+</form>*@
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th class="h3">
+                Serial No
+            </th>
+            <th class=" h3 ">
+                Bus Name
+            </th>
+            <th class=" h3  ">
+                Total Seat
+            </th>
+            <th class=" h3  ">
+                Bus Number
+            </th>
+            <th class=" h3  ">
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td class=" h4  ">@item.BusSerial</td>
+                <td class=" h4  ">@item.CoachName</td>
+                <td class=" h4  ">@item.TotalSeat</td>
+                <td class=" h4  ">@item.BusNumber</td>
+                <td class=" h4  ">
+                  <a asp-action="UpdateBus" asp-controller="Bus" asp-route-id="@item.BusId"><i class="fa fa-pencil-square-o" style="font-size:25px;color:green"></i></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a asp-action="BusDetails" asp-controller="Bus" asp-route-id="@item.BusId"><i class="fa fa-info-circle" style="font-size:25px;color:dodgerblue"></i></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a asp-action="DeleteBus" asp-controller="Bus" asp-route-id="@item.BusId"><i class="fa fa-trash" style="font-size:25px;color:red"></i></a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

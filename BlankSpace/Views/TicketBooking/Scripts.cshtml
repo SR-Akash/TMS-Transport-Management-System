@@ -1,0 +1,40 @@
+﻿@model BlankSpace.ViewModels.ScriptVm
+
+@{
+    ViewData["Title"] = "Genarate";
+}
+
+
+
+
+<div class="row">
+    @ViewBag.SMS
+    <div class="col-md-4 col-md-offset-4">
+
+        <h1 class="text-center">Generate Scripts</h1>
+        <hr />
+        <form asp-action="ScriptsGenarate">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="BusId" class="control-label h4"></label>
+                <select asp-items="@ViewBag.Bus" asp-for="BusId" class="form-control">
+                    <option hidden disabled selected>Please Select Bus</option>
+                </select>
+                <span asp-validation-for="BusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label h4"></label>
+                <input asp-for="Date" class="form-control" type="date" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Genrate" class="btn btn-success" />
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+

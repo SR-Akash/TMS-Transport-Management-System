@@ -1,0 +1,43 @@
+﻿@model BlankSpace.ViewModels.AssignedDriverVm
+
+@{
+    ViewData["Title"] = "UpdateAssignBus";
+}
+
+
+<h4 style="text-align:center" > Update Assign Driver to Bus</h4>
+
+<hr />
+<div class="row">
+
+    <div class="col-md-4 col-md-offset-4">
+
+        <form asp-action="UpdateAssignedDriver">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="AssignedDriverId" type="hidden" />
+            <div class="form-group">
+                <label asp-for="BusId" class="control-label h4"></label>
+                <select asp-items="@ViewBag.Bus" asp-for="BusId" class="form-control">
+                    <option hidden disabled selected>Please Select Bus</option>
+                </select>
+                <span asp-validation-for="BusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverId" class="control-label h4"></label>
+                <select asp-items="@ViewBag.Driver" asp-for="DriverId" class="form-control">
+                    <option hidden disabled selected>Please Select Driver</option>
+                </select>
+                <span asp-validation-for="DriverId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="AssignBusList">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,47 @@
+﻿@model BlankSpace.ViewModels.BusVm
+
+@{
+    ViewData["Title"] = "DeleteBus";
+}
+
+<h2 style="text-align: center;">Delete Bus</h2>
+<hr />
+<div class="col-md-5 col-md-offset-4">
+
+    <h3>Are you sure you want to delete this?</h3>
+
+    <dl class="dl-horizontal ">
+        <dt>
+            @Html.DisplayNameFor(model => model.BusId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BusId)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CoachName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoachName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSeat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalSeat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BusNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BusNumber)
+        </dd>
+    </dl>
+
+    <form asp-action="DeleteBus">
+        <input type="hidden" asp-for="BusId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="DriverList">Back to List</a>
+    </form>
+</div>

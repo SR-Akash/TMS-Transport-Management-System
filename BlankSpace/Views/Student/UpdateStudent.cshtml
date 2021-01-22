@@ -1,0 +1,66 @@
+﻿@model BlankSpace.ViewModels.Student
+
+@{
+    ViewData["Title"] = "UpdateStudent";
+}
+
+<h2 style="text-align:center">
+    <strong>Update Student </strong>
+</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        @if (TempData["msg"] != null)
+        {
+            <div class="alert alert-info text-center" role="alert">
+                <button type="button" class="close" aria-label="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @TempData["msg"]
+            </div>
+        }
+        <form asp-controller="Student" asp-action="UpdateStudent" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="StudentId" type="hidden" />
+            <input asp-for="UniversityId" type="hidden" />
+        
+
+            <div class="form-group">
+                <label asp-for="StudentName" class="control-label">Student Name</label>
+                <input asp-for="StudentName" class="form-control" />
+                <span asp-validation-for="StudentName" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="UniversityId" class="control-label">University Id</label>
+                <input asp-for="UniversityId" class="form-control" />
+                <span asp-validation-for="UniversityId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label">Password</label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label">Phone</label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="StudentList">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+

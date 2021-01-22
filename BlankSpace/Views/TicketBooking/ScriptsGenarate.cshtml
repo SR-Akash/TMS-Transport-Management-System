@@ -1,0 +1,123 @@
+﻿@model List<BlankSpace.ViewModels.ScriptVm>
+@{
+    ViewData["Title"] = "Scripts Genarate";
+}
+
+<h2>Scripts Genarate</h2>
+
+
+
+
+<p>
+    <input type="submit" class="btn btn-success" value="Make pdf " id="print" />
+    <br />
+</p>
+<div id="testdiv">
+   
+    Coach Name : @Model[0].BusName <br />
+    Route: @Model[0].Route >-----> @ViewBag.Destinaion
+    <p class="h2" style="text-align:center;">Passenger List<br /><div style="border-bottom:1px solid #686868"></div> </p>
+
+    <table class="table table-bordered table-responsive" >
+        <thead>
+            <tr>
+                <th class="h3">
+                    Serial No
+                </th>
+                <th class=" h3 ">
+                    Passenger Name
+                </th>
+                <th class=" h3  ">
+                    Mobile Number
+                </th>
+                <th class=" h3  ">
+                    Seat Number
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{ var a = 1;}
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td class=" h4  ">@a</td>
+                    <td class=" h4  ">@item.Name</td>
+                    <td class=" h4  ">@item.Mobile</td>
+                    <td class=" h4  ">
+
+                        @for (int i = 0; i < item.Seat.Count; i++)
+                        {
+                            var ab = item.Seat[i].ToString();
+
+                            <span class="h5">
+                                @ab
+
+                                @if (i != item.Seat.Count - 1)
+                                {
+                                    <span>,</span>
+
+                                }
+
+
+                            </span>
+
+
+                        }
+
+
+                    </td>
+
+                    @{a++;
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#print").click(function () {
+
+
+
+                 var element = document.getElementById('testdiv');
+
+        // Generate the PDF.
+                const options = {
+                    filename: 'Test.pdf',
+                    image: { type: 'jpeg' },
+                    margin: .5,
+                    html2canvas: {},
+                    jsPDF: { orientation: 'portrait', unit: 'in', format: 'letter', compressPDF: true }
+
+                };
+                html2pdf().from(element).set(options).save();
+
+
+
+
+
+               
+
+
+
+
+             
+             
+               
+
+            });
+
+        });
+
+
+    </script>
+}

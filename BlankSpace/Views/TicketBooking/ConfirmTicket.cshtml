@@ -1,0 +1,160 @@
+﻿@model BlankSpace.ViewModels.TicketVm
+@{
+    ViewData["Title"] = "ConfirmTicket";
+}
+
+
+<input style="margin-top:20px " type="button" id="print" value="Print Ticket!" class="btn btn-success"/><br /><br />
+
+
+<div class="row" id="testdiv" style="padding-left:40px;padding-right:40px;color:darkred ">
+    <div class="row" style="border-style:dashed;padding:10px 10px 10px 10px  ">
+        <hr style="margin-top:7px;margin-bottom:1px;" />
+        <hr style="margin-top:1px;margin-bottom:1px;" />
+        <h4 style="text-align:center">White Space Bus </h4>
+        <p>
+            <b> <u>Route </u></b>  :@Model.StartFrom  --->  @Model.Destination
+            <br />
+            <b> <u>Issue Date </u></b>  :  @DateTime.Now
+
+        </p>
+        <hr style="margin-top:7px;margin-bottom:1px;" />
+        <hr style="margin-top:1px;margin-bottom:10px;" />
+        <div class="row">
+            <div class="col-md-3">
+                <b> <u>Passenger Name</u></b>
+
+                <br />
+
+                @Model.PassengerName
+            </div>
+            <div class="col-md-3">
+                <b> <u>Mobile Number</u></b>
+                <br />
+                @Model.Mobile
+            </div>
+            <div class="col-md-3">
+                <b> <u>Ticket Price</u></b><br />
+                @Model.TicketPrice tk only
+            </div>
+            <div class="col-md-3">
+                <b> <u>Seat Number</u></b><br />
+                @for (int i = 0; i < Model.Seat.Count; i++)
+                {
+                    var a = Model.Seat[i].ToString();
+
+                    <span class="h5">
+                        @a
+
+
+
+                        @if (i != Model.Seat.Count - 1)
+                        {
+                            <span>,</span>
+
+                        }
+
+                    </span>
+
+
+                }
+            </div>
+
+
+
+        </div>
+
+        <hr style="margin-top:7px;margin-bottom:1px;" />
+        <hr style="margin-top:1px;margin-bottom:1px;" />
+        <br />
+        <div class="row">
+            <div class="col-md-7">
+                <div class="col-md-6">
+                    <b><u>Bus Name( Coach )</u></b><br />
+                    @Model.BusName
+                    <br />
+                    <b><u>Total Fare</u></b>
+                    <br />
+                    @Model.TotalCost tk only
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-6">
+                        <b><u>Reporting Time</u></b><br />
+                        11 pm
+                        <br />
+                        <b><u>Departure Time</u></b>
+                        <br />
+                        @Model.Time
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <b><u>Bording Point Location </u></b>  <br />
+                <b> <u> Jouney Start</u> </b>: @Model.StartFrom <br />
+                <b><u>Destination</u></b>: @Model.Destination<br />
+                <b><u>Date</u></b>: @Model.Date.ToString("dd/MM/yy")
+
+
+            </div>
+            <hr style="padding:1px" />
+
+
+        </div>
+        <hr style="margin-top:1px;margin-bottom:1px;" />
+        <hr style="margin-top:1px;margin-bottom:1px;" />
+
+
+
+    </div>
+
+
+</div>
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+        
+
+        $(document).ready(function () {
+
+
+            $("#print").click(function () {
+
+
+                var element = document.getElementById('testdiv');
+
+        // Generate the PDF.
+                const options = {
+                    filename: 'Test.pdf',
+                    image: { type: 'jpeg' },
+                    html2canvas: {},
+                    jsPDF: { orientation: 'Landscape', unit: 'in', format: 'letter', compressPDF: true }
+
+                };
+                html2pdf().from(element).set(options).save();
+                
+        //html2pdf().from(element).set({
+        //  margin: .5,
+        //  filename: 'test.pdf',
+        //  html2canvas: { scale: 1 },
+        //  jsPDF: {orientation: 'portrait', unit: 'in', format: 'letter', compressPDF: true}
+        //}).save();
+
+
+
+
+
+
+
+                
+
+
+            });
+
+        });
+
+
+    </script>
+}

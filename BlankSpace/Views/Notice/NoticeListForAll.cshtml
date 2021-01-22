@@ -1,0 +1,39 @@
+﻿@model List<BlankSpace.ViewModels.Notice>
+
+<p class="h2" style="text-align:center;">Notice List<br /><div style="border-bottom:1px solid #686868"></div> </p>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info text-center" role="alert">
+        <button type="button" class="close" aria-label="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["msg"]
+    </div>
+}
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th class="h3">
+                Serial No
+            </th>
+            <th class="h3">
+                Date
+            </th>
+            <th class=" h3 ">
+                Notice
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td class=" h4  ">@item.NoticeId</td>
+                <td class=" h4  ">@item.NoticeDate</td>
+                <td class=" h4  ">@item.NoticeName</td>
+            </tr>
+        }
+    </tbody>
+</table>

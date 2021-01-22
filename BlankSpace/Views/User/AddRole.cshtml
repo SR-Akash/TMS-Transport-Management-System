@@ -1,0 +1,42 @@
+﻿@model BlankSpace.ViewModels.RoleTypeVm
+
+@{
+    ViewData["Title"] = "Add Role";
+}
+
+
+
+<h2 style="text-align:center">Add Role</h2>
+<hr />
+
+<div class="row ">
+    <div class="col-md-4 col-md-offset-4">
+        @if (TempData["msg"] != null)
+        {
+            <div class="alert alert-info text-center" role="alert">
+                <button type="button" class="close" aria-label="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @TempData["msg"]
+            </div>
+        }
+        <form asp-action="AddRole">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label h4"></label>
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="RoleList">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+

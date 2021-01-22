@@ -1,0 +1,58 @@
+﻿
+@model BlankSpace.ViewModels.BusVm
+
+@{
+    ViewData["Title"] = "Update Bus";
+}
+
+<h2 style="text-align:center">Update Bus</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        @if (TempData["msg"] != null)
+        {
+            <div class="alert alert-info text-center" role="alert">
+                <button type="button" class="close" aria-label="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @TempData["msg"]
+            </div>
+        }
+        <form asp-controller="Bus" asp-action="UpdateBus" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="BusId" />
+            <input asp-for="BusNumber" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="CoachName" class="h4 control-label">Bus Name</label>
+                <input asp-for="CoachName" class="form-control" />
+                <span asp-validation-for="CoachName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalSeat" class="control-label h4"></label>
+                <input asp-for="TotalSeat" class="form-control" />
+                <span asp-validation-for="TotalSeat" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="BusNumber" class="control-label h4"></label>
+                <input asp-for="BusNumber" class="form-control" />
+                <span asp-validation-for="BusNumber" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="BusList" asp-controller="Bus">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

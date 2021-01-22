@@ -1,0 +1,45 @@
+﻿@model BlankSpace.ViewModels.DriverVm
+
+@{
+    ViewData["Title"] = "DriverDetails";
+}
+<h2 style="text-align:center">Driver Details</h2>
+
+
+<hr />
+
+<div class="col-md-5 col-md-offset-4">
+
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LicenseNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LicenseNumber)
+        </dd>
+    </dl>
+    <div>
+
+        <a asp-action="DriverList">Back to List</a>
+    </div>
+</div>
+

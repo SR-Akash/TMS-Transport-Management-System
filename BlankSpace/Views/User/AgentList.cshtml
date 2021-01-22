@@ -1,0 +1,53 @@
+﻿@model List<BlankSpace.ViewModels.AgentVm>
+
+@{
+    ViewData["Title"] = "AgentList";
+}
+<p class="h2" style="text-align:center;">
+    Bus List<br />
+    <div style="border-bottom:1px solid #686868"></div>
+</p>
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th class="h3">
+                Serial No
+            </th>
+            <th class=" h3 ">
+                Agent Name
+            </th>
+            <th class=" h3  ">
+                Mobile
+            </th>
+            <th class=" h3  ">
+                Date Of Birth
+            </th>
+            <th class=" h3  ">
+                Address
+            </th>
+            <th class=" h3  ">
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td class=" h4  ">@item.Serial</td>
+                <td class=" h4  ">@item.Name</td>
+                <td class=" h4  ">@item.Mobile</td>
+                <td class=" h4  ">@item.DOB.Date.ToString("dd-MM-yy")</td>
+                <td class=" h4  ">@item.Address</td>
+                <td class=" h4  ">
+                    <a asp-action="UpdateAgent" asp-controller="User" asp-route-id="@item.AgentId"><i class="fa fa-pencil-square" style="font-size:25px;color:green"></i></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a asp-action="AgentDetails" asp-controller="User" asp-route-id="@item.AgentId"><i class="fa fa-info-circle" style="font-size:25px;color:dodgerblue"></i></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a asp-action="DeleteAgent" asp-controller="User" asp-route-id="@item.AgentId"><i class="fa fa-trash" style="font-size:25px;color:red"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

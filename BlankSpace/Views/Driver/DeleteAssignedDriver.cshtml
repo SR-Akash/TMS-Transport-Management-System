@@ -1,0 +1,70 @@
+﻿@model BlankSpace.ViewModels.AssignedDriverVm
+
+@{
+    ViewData["Title"] = "DeleteAssignedDriver";
+}
+
+<h2 style="text-align:center">Detele Assigned Driver</h2>
+
+
+<hr />
+<h3 style="text-align:center">Are you sure you want to delete this?</h3>
+<div class="col-md-4 col-md-offset-4">
+
+
+    <h4 style="text-align:center">
+        Driver Details
+    </h4>
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DriverName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DriverName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DriverMobile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DriverMobile)
+        </dd>
+
+
+
+    </dl>
+
+    <h4 style="text-align:center">
+        Bus Details
+    </h4>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CoachName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CoachName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalSeat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TotalSeat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BusNumber)
+        </dd>
+
+    </dl>
+    <form asp-action="DeleteAssignedDriver">
+        <input asp-for="AssignedDriverId" type="hidden" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="AssignBusList">Back to List</a>
+    </form>
+
+</div>
+
+

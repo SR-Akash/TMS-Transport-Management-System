@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+}
+
+@model BlankSpace.ViewModels.UserVm
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+    <title>Login</title>
+
+    <link href="~/BlankSpace/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  
+    <link href="~/BlankSpace/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    
+    <link href="~/BlankSpace/css/style.css" rel="stylesheet">
+    <link href="~/BlankSpace/css/table-responsive.css" rel="stylesheet">
+</head>
+
+<body>
+ 
+    <div id="login-page">
+        <div class="container">
+            <form class="form-login" asp-action="Login">
+                <div class="text-danger"><center><h3>@ViewBag.Login</h3></center></div>
+                <h2 class="form-login-heading" style="background-color:cornflowerblue">sign in </h2>
+                @if (TempData["msg"] != null)
+                {
+                    <div class="alert alert-info text-center" role="alert">
+                        <button type="button" class="close" aria-label="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        @TempData["msg"]
+                    </div>
+                }
+            <div class="login-wrap">
+                <h4> Enter User Name </h4>
+                <input type="text" class="form-control" placeholder="User ID" autofocus asp-for="UserName">
+                <span asp-validation-for="UserName" class="text-danger"></span>
+                <br>
+                <h4> Enter User Password </h4>
+                <input type="password" class="form-control" placeholder="Password" asp-for="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+
+                <h4> Select Your Role </h4>
+                @Html.DropDownListFor(M => M.Role, new SelectList(ViewBag.Role, "RoleTypeId", "RoleName"))
+                <br />
+                <br />
+                <button style="background-color:green" class="btn btn-theme btn-block" href="index.html" type="submit"><i class="fa fa-lock"></i> SIGN IN</button>
+                <hr>
+
+                <div class="registration">
+                    <b>
+                        <a data-toggle="modal" data-target="#myModal"> Forgot Password ?</a>
+                    </b>
+                </div>
+            </div>
+                <!-- Modal -->
+                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                    <div class="modal-dialog ">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:orangered">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title text-center">Contact with University Authority</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal -->
+
+            </form>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/BlankSpace/lib/jquery/jquery.min.js"></script>
+
+
+    <script src="~/BlankSpace/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/BlankSpace/lib/jquery.backstretch.min.js"></script>
+    <script src="~/BlankSpace/AJAX/ajaxjQueryjquery1.11.3.min.js"></script>
+    <script src="~/BlankSpace/AJAX/ajaxjqueryvalidate1.14.0jquery.validate.min.js"></script>
+    <script src="~/BlankSpace/AJAX/jquery.validate.unobtrusive.min.js"></script>
+
+
+
+
+
+</body>
+
+</html>

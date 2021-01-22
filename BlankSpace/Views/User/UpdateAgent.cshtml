@@ -1,0 +1,52 @@
+﻿@model BlankSpace.ViewModels.AgentVm
+
+@{
+    ViewData["Title"] = "UpdateAgent";
+}
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h2>UpdateAgent</h2>
+
+
+        <hr />
+        <form asp-action="UpdateAgent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="AgentId" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label h4"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DOB" class="control-label h4"></label>
+                <input asp-for="DOB" type="date" class="form-control" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label h4"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label h4"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+            <div>
+                <a asp-action="AgentList">Back to List</a>
+            </div>
+        </form>
+     
+
+    </div>
+</div>
+
+
+

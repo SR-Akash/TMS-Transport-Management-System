@@ -1,0 +1,64 @@
+﻿@model List<BlankSpace.ViewModels.Student>
+
+<p class="h2" style="text-align:center;">Student List<br /><div style="border-bottom:1px solid #686868"></div> </p>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info text-center" role="alert">
+        <button type="button" class="close" aria-label="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["msg"]
+    </div>
+}
+<div>
+    <form asp-action="StudentList" method="post">
+        <div class="container h-100" aria-hidden="true">
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="search" placeholder="Search...">
+                    @*<a href="#" class="search_icon"><i class="fas fa-search"></i></a>*@
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th class="h3">
+                Serial No
+            </th>
+            <th class="h3">
+                Student Name
+            </th>
+            <th class=" h3 ">
+                University Id
+            </th>
+            <th class=" h3 ">
+                Email
+            </th>
+            <th class=" h3 ">
+                Password
+            </th>
+            <th class=" h3 ">
+                Phone
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td class=" h4  ">@item.StudentId</td>
+                <td class=" h4  ">@item.StudentName</td>
+                <td class=" h4  ">@item.UniversityId</td>
+                <td class=" h4  ">@item.Email</td>
+                <td class=" h4  ">@item.Password</td>
+                <td class=" h4  ">@item.Phone</td>
+
+            </tr>
+        }
+    </tbody>
+</table>

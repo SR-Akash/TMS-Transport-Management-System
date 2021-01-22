@@ -1,0 +1,48 @@
+﻿@model BlankSpace.ViewModels.Notice
+
+@{
+    ViewData["Title"] = "UpdateNotice";
+}
+
+<h2 style="text-align:center">Update Notice</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        @if (TempData["msg"] != null)
+        {
+            <div class="alert alert-info text-center" role="alert">
+                <button type="button" class="close" aria-label="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @TempData["msg"]
+            </div>
+        }
+        <form asp-controller="Notice" asp-action="UpdateNotice" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="NoticeId" type="hidden" />
+
+            <div class="form-group">
+                <label asp-for="NoticeDate" class="control-label"></label>
+                <input asp-for="NoticeDate" class="form-control" />
+                <span asp-validation-for="NoticeDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoticeName" class="control-label"></label>
+                <input asp-for="NoticeName" class="form-control" />
+                <span asp-validation-for="NoticeName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="NoticeList">Back to List</a>
+        </div>
+    </div>
+</div>
+
+
+

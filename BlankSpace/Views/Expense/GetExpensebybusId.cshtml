@@ -1,0 +1,57 @@
+﻿@model BlankSpace.ViewModels.ExpenseSearch
+
+@{
+    ViewData["Title"] = "CreateExpense";
+}
+<h2 style="text-align:center">Expense Report</h2>
+<hr />
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+
+        @*@if (TempData["msg"] != null)
+            {
+                <div class="alert alert-info text-center" role="alert">
+                    <button type="button" class="close" aria-label="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    @TempData["msg"]
+                </div>
+            }*@
+        <form asp-action="ExpenseReport">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!--<!--<div class="form-group">-->
+            <!--@*<label asp-for="BusId" class="control-label h4"></label>
+                <input asp-for="BusId" class="form-control" />
+                <span asp-validation-for="BusId" class="text-danger"></span>*@-->
+            <!--
+            </div>-->
+            <div class="form-group">
+                <h4>Select Bus</h4>
+                @Html.DropDownListFor(M => M.busid, new SelectList(ViewBag.buslist, "BusId", "CoachName"))
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="fromdate" class="control-label h4">From Date</label>
+                <input asp-for="fromdate" class="form-control" />
+                <span asp-validation-for="fromdate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="todate" class="control-label h4">To Date</label>
+                <input asp-for="todate" class="form-control" />
+                <span asp-validation-for="todate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="View" class="btn btn-default" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="ExpenseList">Back to Expense List</a>
+        </div>
+    </div>
+</div>

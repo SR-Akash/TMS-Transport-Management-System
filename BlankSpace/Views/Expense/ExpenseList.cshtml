@@ -1,0 +1,59 @@
+﻿@model List<BlankSpace.ViewModels.Expense>
+
+<p class="h2" style="text-align:center;">Expense List For All Vehicle<br /><div style="border-bottom:1px solid #686868"></div> </p>
+
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info text-center" role="alert">
+        <button type="button" class="close" aria-label="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["msg"]
+    </div>
+}
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th class="h3">
+                Bus Id
+            </th>
+            <th class="h3">
+                Date
+            </th>
+            <th class=" h3  ">
+                Amount
+            </th>
+            <th class=" h3  ">
+                Narration
+            </th>
+            <th class=" h3  ">
+                Driver Name
+            </th>
+            <th class=" h3  ">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td class=" h4  ">@item.BusId</td>
+                <td class=" h4  ">@item.Date</td>
+                <td class=" h4  ">@item.Amount</td>
+                <td class=" h4  ">@item.Narration</td>
+                <td class=" h4  ">@item.DriverName</td>
+
+                <td class=" h4  ">
+                    <a asp-action="UpdateExpense" asp-controller="Expense" asp-route-id="@item.ExpenseId"><i class="fa fa-pencil-square-o" style="font-size:25px;color:green"></i></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a asp-action="ExpenseDetails" asp-controller="Expense" asp-route-id="@item.ExpenseId"><i class="fa fa-info-circle" style="font-size:25px;color:dodgerblue"></i></a>
+                    &nbsp;&nbsp;&nbsp;
+                    <a asp-action="DeleteExpense" asp-controller="Expense" asp-route-id="@item.ExpenseId"><i class="fa fa-trash" style="font-size:25px;color:red"></i></a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

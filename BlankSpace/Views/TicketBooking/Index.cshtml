@@ -1,0 +1,137 @@
+﻿@model BlankSpace.ViewModels.BookingVm
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4" style="border:dashed 2px green;padding:30px;margin-top:10px">
+        <h4>Ticket Reservation Process</h4>
+        <hr />
+        <form asp-action="Booking" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="BookingVmId" />
+                <label class="control-label h4"> Start the from  </label>
+                <select asp-for="StartingFrom" asp-items="@ViewBag.Start" id="Start" class="form-control" >
+                    <option hidden disabled selected> Please Select City</option>
+                </select>
+                <span asp-validation-for="StartingFrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Destination" class="control-label h4"></label>
+                <select asp-for="Destination" id="Des" class="form-control">
+                </select>
+                <span asp-validation-for="Destination" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label h4"> Coach Name </label>
+                <select id="bus" readonly class="form-control" asp-for="BusId"></select>
+                <span asp-validation-for="BusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label h4"> Time </label>
+                <input id="time" readonly class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label h4"></label>
+                <input asp-for="Date" type="date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Check" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+
+    <script type="text/javascript">
+
+        //insert the default value to the section
+
+        $(document).ready(function () {
+            var items = "<option value='0'>Select Your Place</option>";
+            $("#Des").html(items);
+        });
+        //Set the section to select list according to class
+        $("#Start").change(function () {
+            if ($("#Start").val() == 0) {
+                var items = "<option disabled selected hidden>Select Your Place </option>";
+                $("#Des").html(items);
+            }
+            else {
+                var Startid = $("#Start").val();
+                var url = "/BusSchedule/check";
+                $.getJSON(url, { id: Startid }, function (data) {
+                    var items = "<option disabled selected hidden >Select Destinition  &#x2935</option>";
+                    $("#Des").empty();
+                    $.each(data, function (i, sec) {
+                        items += '<option value="' + sec.value + '">' + sec.text + '</option > ';
+                    });
+                    $("#Des").html(items);
+
+                });
+                
+
+            }
+        });
+        $("#Des").change(function () {
+            if ($("#Des").val() == 0) {
+                var items = "Select Your Place </opt";
+                $("#Des").val(items);
+            }
+            else {
+
+                var StartId = $("#Start").val();
+                var DesId = $("#Des").val();
+                var url = "/TicketBooking/checkboth";
+
+                $.getJSON(url, { id: StartId, id2: DesId }, function (data) {
+                    ////$("#bus").val("Select Your Place & Destination");
+                    ////$("#bus").val(data);
+
+                    $("#bus").empty();
+                    $.each(data, function (i, sec) {
+                        items += '<option value="' + sec.value + '">' + sec.text + '</option > ';
+                    });
+                    $("#bus").html(items);
+                    if ($("#bus").val() == null) {
+                        var items = "<option disabled selected hidden >No Record Found Try Another</option>";
+                        $("#bus").html(items);
+                        $("#time").val("No time");
+                    }
+
+                });
+
+
+                var url = "/TicketBooking/checktime";
+
+                $.getJSON(url, { id: StartId, id2: DesId }, function (data) {
+                    $("#time").val(data);
+                });
+                var url = "/TicketBooking/checkid";
+
+                $.getJSON(url, { id: StartId, id2: DesId }, function (data) {
+                    var final = Number(data);
+
+                    $("[name*='BookingVmId']").val(final);
+
+
+
+
+                }
+                );
+            }
+        });
+
+    </script>
+
+}

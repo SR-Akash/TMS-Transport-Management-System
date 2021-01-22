@@ -1,0 +1,53 @@
+﻿@model List<BlankSpace.ViewModels.BusScheduleVm>
+
+<p class="h2" style="text-align:center;">Bus Schedule List<br /><div style="border-bottom:1px solid #686868"></div> </p>
+@if (TempData["msg"] != null)
+{
+    <div class="alert alert-info text-center" role="alert">
+        <button type="button" class="close" aria-label="close" data-dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        @TempData["msg"]
+    </div>
+}
+<table class="table table-striped table-responsive">
+    <thead>
+        <tr>
+            <th class="h3">
+                Serial No
+            </th>
+            <th class=" h3 ">
+                Bus Name
+            </th>
+            <th class=" h3 ">
+                Time
+            </th>
+            <th class=" h3  ">
+                From
+            </th>
+            <th class=" h3  ">
+                To
+            </th>
+            <th class=" h3  ">
+                Driver No
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td class=" h4  ">@item.Serial</td>
+                <td class=" h4  ">@item.CoachName</td>
+                <td class=" h4  ">@item.Time</td>
+                <td class=" h4  ">@item.StartingFromName</td>
+                <td class=" h4  ">@item.DestinationName</td>
+                <td class=" h4  ">@item.TicketPrice </td>
+                <td class=" h4  ">
+                    
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
